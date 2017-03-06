@@ -8,7 +8,21 @@ const search = (query) => {
   const requested = new Date();
 
   return wikipedia.search(query).then((data) => {
-    // TODO
+    if (resultStore.isOutdated(requested)) {
+      return;
+    }
+
+    const [query, titles, description, links] = data;
+    const results = titles.map((title, i) => ({
+      title,
+      description: description[i],
+      link: links[i]
+    }));
+
+    resultStore.setState({
+      results,
+      updated: requested,
+    });
   });
 };
 
