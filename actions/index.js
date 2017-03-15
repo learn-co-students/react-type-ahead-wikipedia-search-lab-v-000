@@ -9,6 +9,22 @@ const search = (query) => {
 
   return wikipedia.search(query).then((data) => {
     // TODO
+    if (resultStore.isOutdated(requested)) {
+      return null;
+    }
+
+    const [query, titles, descriptions, links] = data;
+    const updatedResults = titles.map((title1, index) => ({
+      title: title1,
+      description: descriptions[index],
+      link: links[index]
+    }))
+
+    resultStore.setState({
+      results: updatedResults,
+      updated: new Date(),
+     });
+
   });
 };
 
