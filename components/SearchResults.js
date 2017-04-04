@@ -3,7 +3,7 @@
 const React = require('react');
 
 const SearchResults = ({ results }) => (
-  <ul>
+  <ul className="search-results">
   </ul>
 );
 
