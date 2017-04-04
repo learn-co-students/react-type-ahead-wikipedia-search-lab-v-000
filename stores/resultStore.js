@@ -2,7 +2,16 @@
 
 const Store = require('./Store');
 
-class ResultStore {
+class ResultStore extends Store {
+
+  isOutdated(date) {
+    return date <= this.state.updated;
+  }
+
+  
 }
 
-module.exports = new ResultStore();
+module.exports = new ResultStore({
+  results: [],
+  updated: new Date()
+});
