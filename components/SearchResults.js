@@ -5,7 +5,12 @@ const React = require('react');
 const SearchResults = ({ results }) => (
   <ul className="search-results">
     {
-      results.map(results => <li></li>)
+      results.map(result =>
+        <li>
+          <a href={result.link}>{result.title}</a>
+          <p>{ result.description }</p>
+        </li>
+      )
     }
   </ul>
 );
