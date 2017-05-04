@@ -39,6 +39,9 @@ describe('resultStore', function() {
       it('should return false', function() {
         const updated = new Date(2);
         const resultStore = new ResultStore({ results: [], updated });
+        console.log("------------------>")
+        console.log(new Date(3) > resultStore.getState().updated)
+        // console.log(resultStore.isOutdated(new Date(3)))
         expect(resultStore.isOutdated(new Date(3))).toBe(false);
       });
     });
