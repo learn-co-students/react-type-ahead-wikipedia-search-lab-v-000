@@ -1,4 +1,4 @@
-require('./test/index-test.js');
+//require('./test/index-test.js');
 
 import Autocomplete from './components/Autocomplete';
 import React from 'react';

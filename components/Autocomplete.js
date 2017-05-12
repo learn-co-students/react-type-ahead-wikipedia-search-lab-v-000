@@ -11,12 +11,40 @@ class Autocomplete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      query: "",
+      results: resultStore.getState().results,
     };
+    this.processChange = this.processChange.bind(this);
   }
+
+  componentDidMount() {
+    this.removeListener = resultStore.addListener(({results}) => {
+      this.setState({results});
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
+  processChange(event) {
+    const query = event.target.value;
+    this.setState({query});
+
+    if (query.length > 2) {
+      actions.search(query);
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div className="autocomplete">
         <h2>Autocomplete</h2>
+        <SearchField
+          value={this.state.query}
+          onChange={this.processChange}
+        />
+        <SearchResults results={this.state.results}/>
       </div>
     );
   }
