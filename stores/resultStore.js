@@ -2,9 +2,17 @@
 
 import Store from './Store';
 
-class ResultStore {
+class ResultStore extends Store {
+
+  isOutdated(date){
+    return this.getState().updated > date;
+  }
+
 }
 
-const resultStore = new ResultStore();
+const resultStore = new ResultStore({
+  results: [],
+  updated: null,
+});
 
 export default resultStore;
