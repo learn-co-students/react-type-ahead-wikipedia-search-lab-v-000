@@ -7,7 +7,11 @@ export default class Store {
   }
 
   addListener(listener) {
-    // TODO
+    this.listeners.push(listener);
+    const removeListeners = () => {
+      this.listeners = this.listeners.filter((l) => listener !== l);
+    };
+    return removeListeners;
   }
 
   setState(state) {
