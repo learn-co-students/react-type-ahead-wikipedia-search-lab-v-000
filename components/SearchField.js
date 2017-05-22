@@ -2,8 +2,14 @@
 
 import React from 'react';
 
-const SearchField = props => (
-  <input />
-);
+class SearchField extends React.Component {
+  render() {
+    return (
+      <input className="search-field"
+        value={this.props.value}
+        onChange={this.props.onChange} />
+    );
+  }
+}
 
 export default SearchField;
