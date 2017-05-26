@@ -28,21 +28,29 @@ class Autocomplete extends React.Component {
   }
 
   handleChange(ev) {
+    const query = ev.target.value
     this.setState({
-      query: ev.target.value
+      query: query
     }, () => {
-      if (this.state.query.length > 2) {
-        actions.search(this.state.query)
+      if (query.length > 2) {
+        actions.search(query)
       }
     })
   }
 
   render() {
+    const { query, results } = this.state
+
     return (
       <div className='autocomplete'>
         <h2>Autocomplete</h2>
-        <SearchField value={this.state.query} onChange={this.handleChange} />
-        <SearchResults results={this.state.results}/>
+
+        <SearchField
+          value={query}
+          onChange={this.handleChange}
+        />
+
+        <SearchResults results={results}/>
       </div>
     );
   }
